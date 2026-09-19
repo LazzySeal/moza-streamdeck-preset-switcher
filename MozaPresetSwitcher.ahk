@@ -221,13 +221,30 @@ ApplyPreset(PresetName)
     RequiredOuterW := ExpectedClientW + FrameW
     RequiredOuterH := ExpectedClientH + FrameH
 
-    WinMove(
-        OuterX,
-        OuterY,
-        RequiredOuterW,
-        RequiredOuterH,
-        PitHouseID
-    )
+    try
+    {
+        WinMove(
+            OuterX,
+            OuterY,
+            RequiredOuterW,
+            RequiredOuterH,
+            PitHouseID
+        )
+    }
+    catch as err
+    {
+        ShowError(
+            "Could not resize MOZA Pit House.`n`n"
+            . "Windows returned: " err.Message
+            . "`n`n"
+            . "Pit House may be running as Administrator while "
+            . "this script is not.",
+            PreviousWindow
+        )
+
+        Busy := false
+        return
+    }
 
     Sleep 350
 
