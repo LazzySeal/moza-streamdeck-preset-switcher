@@ -334,35 +334,49 @@ ApplyPreset(PresetName)
     FileDialogHwnd := WinExist("A")
     FileDialogID := "ahk_id " FileDialogHwnd
 
-    Sleep 150
-
+    ; Windows file picker can be sluggish on the first use
+    ; after a long period of inactivity.
+    Sleep 1200
 
     ; --------------------------------------------------------
     ; ENTER AND VERIFY EXACT PRESET PATH
-    ; --------------------------------------------------------
+    ; ----
 
     PathEntered := false
 
     Loop 20
     {
-        ControlSetText PresetFile, "Edit1", FileDialogID
-
+        ControlFocus "Edit1", FileDialogID
         Sleep 100
+
+        ControlSetText PresetFile, "Edit1", FileDialogID
+        Sleep 250
 
         CurrentText := ControlGetText("Edit1", FileDialogID)
 
         if (CurrentText = PresetFile)
         {
-            PathEntered := true
-            break
+            ; Do not submit immediately.
+            ; Give the Windows file picker time to process the
+            ; completed filename/path internally.
+            Sleep 600
+
+            ; Verify once more after the settling delay.
+            CurrentText := ControlGetText("Edit1", FileDialogID)
+
+            if (CurrentText = PresetFile)
+            {
+                PathEntered := true
+                break
+            }
         }
 
-        Sleep 100
+        Sleep 150
     }
 
 
     ; --------------------------------------------------------
-    ; Abort if Windows did not accept the complete path
+    ; ABORT IF COMPLETE PATH WAS NOT ACCEPTED
     ; --------------------------------------------------------
 
     if !PathEntered
@@ -374,7 +388,7 @@ ApplyPreset(PresetName)
             . "Expected:`n"
             . PresetFile
             . "`n`n"
-            . "Last value read from the file picker:`n"
+            . "Last value read:`n"
             . CurrentText,
             PreviousWindow
         )
@@ -385,11 +399,11 @@ ApplyPreset(PresetName)
 
 
     ; --------------------------------------------------------
-    ; SUBMIT PRESET FILE
+    ; SUBMIT PRESET
     ; --------------------------------------------------------
 
     ControlFocus "Edit1", FileDialogID
-    Sleep 100
+    Sleep 250
 
     ControlSend "{Enter}", "Edit1", FileDialogID
 
