@@ -346,6 +346,10 @@ That means an SDK-based preset loader may reproduce only part of a preset.
 
 This project instead asks Pit House itself to import the `.mzpreset` file, allowing Pit House to handle the complete preset.
 
+### Javelin anticheat (EA WRC)
+
+Javelin anticheat detects AutoHotkey and complains about it. So for the duration of playing any game that is using EA javelin anticheat you need to stop the script.
+
 ## Recommended folder structure
 
 ```text
