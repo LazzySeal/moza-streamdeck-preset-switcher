@@ -423,14 +423,3 @@ The script interacts with MOZA Pit House through UI automation, so future Pit Ho
 
 Use it at your own risk.
 
-## Possible future improvements
-
-- automatic detection of Pit House layout changes
-- configurable preset definitions outside the `.ahk` file
-- Stream Deck icons/status feedback
-- active-preset indication
-- automatic game detection
-- automatic preset selection based on the running simulator
-- more robust Pit House UI detection
-- optional logging
-- packaged executable version
