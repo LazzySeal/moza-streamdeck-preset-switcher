@@ -338,29 +338,60 @@ ApplyPreset(PresetName)
 
 
     ; --------------------------------------------------------
-    ; Focus File Name field
+    ; ENTER AND VERIFY EXACT PRESET PATH
+    ; --------------------------------------------------------
+
+    PathEntered := false
+
+    Loop 20
+    {
+        ControlSetText PresetFile, "Edit1", FileDialogID
+
+        Sleep 100
+
+        CurrentText := ControlGetText("Edit1", FileDialogID)
+
+        if (CurrentText = PresetFile)
+        {
+            PathEntered := true
+            break
+        }
+
+        Sleep 100
+    }
+
+
+    ; --------------------------------------------------------
+    ; Abort if Windows did not accept the complete path
+    ; --------------------------------------------------------
+
+    if !PathEntered
+    {
+        WinClose FileDialogID
+
+        ShowError(
+            "Windows file picker did not accept the complete preset path.`n`n"
+            . "Expected:`n"
+            . PresetFile
+            . "`n`n"
+            . "Last value read from the file picker:`n"
+            . CurrentText,
+            PreviousWindow
+        )
+
+        Busy := false
+        return
+    }
+
+
+    ; --------------------------------------------------------
+    ; SUBMIT PRESET FILE
     ; --------------------------------------------------------
 
     ControlFocus "Edit1", FileDialogID
     Sleep 100
 
-
-    ; --------------------------------------------------------
-    ; Enter exact preset path
-    ; --------------------------------------------------------
-
-    Send "^a"
-    Sleep 50
-
-    SendText PresetFile
-    Sleep 150
-
-
-    ; --------------------------------------------------------
-    ; Submit file
-    ; --------------------------------------------------------
-
-    Send "{Enter}"
+    ControlSend "{Enter}", "Edit1", FileDialogID
 
 
     ; --------------------------------------------------------
