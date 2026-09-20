@@ -89,7 +89,7 @@ The script then performs the Pit House import sequence automatically.
 
 ## Installation
 
-### 1. Install AutoHotkey v2
+### 1. Install AutoHotkey v2 https://www.autohotkey.com/
 
 Install AutoHotkey v2.
 
