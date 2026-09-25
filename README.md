@@ -44,6 +44,8 @@ The script therefore:
 - confirms Overwrite
 - restores the previously active application
 
+While the script is switching presets, avoid using the mouse or keyboard until the operation is complete. User input can interfere with the UI automation and cause the preset switch to fail.
+
 It is not as elegant as a native MOZA preset API would be, but it works reliably with the tested Pit House layout.
 
 ## Requirements
