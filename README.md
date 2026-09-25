@@ -1,6 +1,6 @@
-# MOZA Pit House Preset Switcher for Stream Deck
+# MOZA Pit House Preset Switcher for Stream Deck or other hotkey capable devices/software
 
-Switch MOZA Pit House presets from an Elgato Stream Deck using AutoHotkey.
+Switch MOZA Pit House presets from an Elgato Stream Deck or other devices/software using AutoHotkey.
 
 This project is intended for users who want quick access to multiple MOZA wheelbase presets without manually navigating through Pit House every time.
 
@@ -349,6 +349,8 @@ This project instead asks Pit House itself to import the `.mzpreset` file, allow
 ### Javelin anticheat (EA WRC)
 
 Javelin anticheat detects AutoHotkey and complains about it. So for the duration of playing any game that is using EA javelin anticheat you need to stop the script.
+So for instance if you want to play EA WRC you use script to change Moza preset to EA WRC one and then you need to stop AutoHotkey instance that is running profile switcher script before launching EA WRC.
+Javelin anticheat will notify you about it.
 
 ## Recommended folder structure
 
