@@ -17,6 +17,8 @@ Stream Deck button
 → Previous application restored
 ```
 
+IF YOU ARE USING SIMHUB THEN ALSO CHECK PROJECT AZOM: https://giant.orth.cc/
+
 ## Why this exists
 
 MOZA currently does not provide a public API command for directly selecting or loading a Pit House preset.
